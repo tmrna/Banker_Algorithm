@@ -12,8 +12,8 @@ std::vector<int> values;
 
 public:
 
-// Default Ctor
-row();
+// Default Ctor handled by stl
+row(){}
 // Ctor (from vec)
 row(const std::vector<unsigned>&);
 // Cpy ctor
