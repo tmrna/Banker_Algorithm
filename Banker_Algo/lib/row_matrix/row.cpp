@@ -25,30 +25,34 @@ row::row(const row& toCpy){
 
 //#######################################   Comparison  ################################################################################
 
-bool row::operator<(const row& rhs){
+bool row::operator<(const row& rhs) const{
     for(int i = 0; i < values.size(); i++){
         if(values[i] > rhs.values[i]) return false;
     }
     return true;
 }
 
-bool row::operator>(const row& rhs){
+bool row::operator>(const row& rhs) const{
     for(int i = 0; i < values.size(); i++){
         if(values[i] > rhs.values[i]) return false;
     }
     return true;
 }
 
-bool row::operator<=(const row& rhs){
+bool row::operator<=(const row& rhs) const{
     return *this < rhs && *this == rhs;
 }
 
-bool row::operator>=(const row& rhs){
+bool row::operator>=(const row& rhs) const{
     return *this > rhs && *this == rhs;
 }
 
-bool row::operator!=(const row& rhs){
+bool row::operator!=(const row& rhs) const{
     return !(*this == rhs);
+}
+
+bool row::operator==(const row& rhs) const{
+    return values == rhs.values;
 }
 
 //###############################################    Addition / Subtraction  ######################################################
@@ -99,4 +103,8 @@ int row::operator[](int loc) const{
 
 int& row::operator[](int loc){
     return values[loc];
+}
+
+bool row::empty() const{
+    return values.empty();
 }

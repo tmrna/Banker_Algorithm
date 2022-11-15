@@ -32,12 +32,12 @@ public:
 
     unsigned size();
 
-    bool operator<(const row&);
-    bool operator>(const row&);
-    bool operator==(const row&);
-    bool operator!=(const row&);
-    bool operator<=(const row& rhs);
-    bool operator>=(const row& rhs);
+    bool operator<(const row&) const;
+    bool operator>(const row&) const;
+    bool operator==(const row&) const;
+    bool operator!=(const row&) const;
+    bool operator<=(const row& rhs) const;
+    bool operator>=(const row& rhs) const;
 
     row operator-(const row&);
     row operator+(const row&);
@@ -49,5 +49,6 @@ public:
     // Access
     int operator[](int index) const;
     int& operator[](int);
+    bool empty() const;
 };
 #endif
