@@ -26,17 +26,19 @@ row::row(const row& toCpy){
 //#######################################   Comparison  ################################################################################
 
 bool row::operator<(const row& rhs) const{
+    assert(rhs.size() == size());
     for(int i = 0; i < values.size(); i++){
         if(values[i] > rhs.values[i]) return false;
     }
-    return true;
+    return rhs.values != values;
 }
 
 bool row::operator>(const row& rhs) const{
+    assert(rhs.size() == size());
     for(int i = 0; i < values.size(); i++){
-        if(values[i] > rhs.values[i]) return false;
+        if(values[i] < rhs.values[i]) return false;
     }
-    return true;
+    return rhs.values != values;
 }
 
 bool row::operator<=(const row& rhs) const{

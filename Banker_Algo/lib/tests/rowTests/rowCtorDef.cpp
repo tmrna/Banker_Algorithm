@@ -1,10 +1,14 @@
 #include "../../row_matrix/row.hpp"
-
 #include <cassert>
-#include <iostream>
 int main(){
     {
+        // default ctor
         row apple;
         assert(apple.empty());
+    }
+    {
+        // dtor
+        row* pear = new row();
+        delete pear;
     }
 }

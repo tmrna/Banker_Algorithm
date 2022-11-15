@@ -12,7 +12,7 @@ Fall 2022
 
 #include <vector>
 #include <iostream>
-
+#include <cassert>
 class row{
 
 private:
