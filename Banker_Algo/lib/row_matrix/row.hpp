@@ -1,6 +1,15 @@
 #ifndef ROW_HPP
 #define ROW_HPP
 
+/*
+
+Rob Deans
+row.hpp
+OS
+Fall 2022
+
+*/
+
 #include <vector>
 #include <iostream>
 
@@ -13,27 +22,28 @@ std::vector<int> values;
 public:
 
 // Default Ctor handled by stl
-row(){}
+row();
 // Ctor (from vec)
-row(const std::vector<unsigned>&);
+row(const std::vector<int>&);
 // Cpy ctor
 row(const row&);
 // Dtor, handled by stl
-~row(){}
+~row();
 
-// prints current row, matrix will use std::endl to clear buffer.
-void print(){for(unsigned i = 0; i < values.size(); i++) std::cout << values[i]; std::cout << "\n";}
+// getter
+std::vector<int> getVal();
 
 bool operator<(const row&);
 bool operator>(const row&);
 bool operator==(const row&);
-bool operator<=(const row& rhs){return *this < rhs && *this == rhs;}
-bool operator>=(const row& rhs){return *this > rhs && *this == rhs;}
+bool operator!=(const row&);
+bool operator<=(const row& rhs);
+bool operator>=(const row& rhs);
 
 row operator-(const row&);
 row operator+(const row&);
-row& operator+=(const row& rhs){*this = *this + rhs; return *this;}
-row& operator-=(const row& rhs){*this = *this - rhs; return *this;}
+row& operator+=(const row& rhs);
+row& operator-=(const row& rhs);
 };
 
 #endif
