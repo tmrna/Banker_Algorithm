@@ -83,9 +83,20 @@ row& row::operator-=(const row& rhs){
     return *this;
 }
 
+//#################################################  Other  #################################################################
 
-//####################################################    Getter   ########################################################
 
-std::vector<int> row::getVal(){
-    return values;
+unsigned row::size() const{
+    return values.size();
+}
+
+
+//#################################################    Access    #########################################################
+
+int row::operator[](int loc) const{
+    return values[loc];
+}
+
+int& row::operator[](int loc){
+    return values[loc];
 }

@@ -17,33 +17,37 @@ class row{
 
 private:
 
-std::vector<int> values;
+    std::vector<int> values;
 
 public:
 
-// Default Ctor handled by stl
-row();
-// Ctor (from vec)
-row(const std::vector<int>&);
-// Cpy ctor
-row(const row&);
-// Dtor, handled by stl
-~row();
+    // Default Ctor handled by stl
+    row();
+    // Ctor (from vec)
+    row(const std::vector<int>&);
+    // Cpy ctor
+    row(const row&);
+    // Dtor, handled by stl
+    ~row();
 
-// getter
-std::vector<int> getVal();
+    unsigned size();
 
-bool operator<(const row&);
-bool operator>(const row&);
-bool operator==(const row&);
-bool operator!=(const row&);
-bool operator<=(const row& rhs);
-bool operator>=(const row& rhs);
+    bool operator<(const row&);
+    bool operator>(const row&);
+    bool operator==(const row&);
+    bool operator!=(const row&);
+    bool operator<=(const row& rhs);
+    bool operator>=(const row& rhs);
 
-row operator-(const row&);
-row operator+(const row&);
-row& operator+=(const row& rhs);
-row& operator-=(const row& rhs);
+    row operator-(const row&);
+    row operator+(const row&);
+    row& operator+=(const row& rhs);
+    row& operator-=(const row& rhs);
+
+    unsigned size() const;
+
+    // Access
+    int operator[](int index) const;
+    int& operator[](int);
 };
-
 #endif

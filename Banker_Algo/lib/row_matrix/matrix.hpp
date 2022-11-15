@@ -37,15 +37,19 @@ matrix(const matrix&);
 // checks if all rows have the same length, if not throws an error.
 void checkDim();
 
+// gets dimensions of matrix
+std::pair<unsigned, unsigned> size() const;
+
+// determines if 2 matricies have the same dimensions
+bool sameDim();
+
 // adds on row to the bottom of matrix
 void append(const row&);
+void append(const std::vector<int>&);
 
 // swaps two rows
 void swapRows(int, int);
 
-std::vector<row> getRows(){
-    return rows;
-}
 //////////  Comparison
 
 bool operator<(const matrix&);
@@ -58,6 +62,8 @@ bool operator!=(const matrix&);
 
 bool operator>=(const matrix&);
 
+bool operator<=(const matrix&);
+
 //////////   Addition / subtraction
 
 matrix operator+(const matrix&);
@@ -66,6 +72,11 @@ matrix operator-(const matrix&);
 matrix& operator+=(const matrix&);
 matrix& operator-=(const matrix&);
 
+// Access
+// subscript operator (value)
+row operator[](int) const;
+// subscript operator (ref)
+row& operator[](int);
 };
 
 #endif
