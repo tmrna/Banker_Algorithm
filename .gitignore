@@ -38,6 +38,6 @@
 /Banker_Algo/build
 /Banker_Algo/lib/build
 /Banker_Algo/lib/row_matrix/build
-/Banker_Algo/lib/deps/build
-/Banker_Algo/lib/pugixml/build
 /Banker_Algo/lib/read_write/build
+/Banker_Algo/lib/read_write/deps/build
+/Banker_Algo/lib/read_write/deps/pugixml/build
