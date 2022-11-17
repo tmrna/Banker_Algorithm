@@ -34,6 +34,10 @@ public:
 
     std::vector<pugi::xml_node> attatchAllocation(std::vector<pugi::xml_node>&);
 
+    std::vector<pugi::xml_node> attatchMax(std::vector<pugi::xml_node>&);
+
+    void attatchAvailable(pugi::xml_node&, const std::vector<int>&);
+
     // Setup version, encoding and standalone
     void versionEncodingStandaloneSetup(pugi::xml_node&);
 

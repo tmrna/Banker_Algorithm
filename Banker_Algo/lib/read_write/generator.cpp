@@ -3,6 +3,7 @@
 // only present here
 static const int NumProcesses = 5;
 static const std::string Allocation = "Allocation";
+static const std::string Max = "Max";
 static const std::string P = "p";
 static const std::vector<std::string> Nums = {"0", "1", "2", "3", "4"};
 static const std::vector<std::string> Types = {"A", "B", "C"};
@@ -50,14 +51,34 @@ void generator::generateExample(){
    /*p3*/ {2, 1, 1},
    /*p4*/ {0, 0, 2}
     };
+
     // our given resources being assigned to counts
-    
     std::vector<std::vector<pugi::xml_node>> resourceAssignments;
     for(unsigned i = 0; i < ctsAllo.size(); i++){
-        resourceAssignments.push_back(attatchResources(allocations[i], ctsAllo[i]));
+        resourceAssignments.push_back(
+            (attatchResources(allocations[i], ctsAllo[i])));
     }
-    
 
+
+    std::vector<pugi::xml_node> maximums = attatchMax(processes);
+
+    std::vector<std::vector<int>> ctsMax {
+        {7, 5, 3},
+        {3, 2, 2},
+        {9, 0, 2},
+        {2, 2, 2},
+        {4, 3, 3}
+    };
+
+    for(unsigned i = 0; i < maximums.size(); i++){
+        attatchResources(maximums[i], ctsMax[i]);
+    }
+
+    std::vector<int> availCt = {3, 3, 2};
+
+    attatchAvailable(root, availCt);
+
+    // output xml file to console
    doc.save(std::cout, " ");
   
 }
@@ -85,6 +106,17 @@ std::vector<pugi::xml_node> generator::attatchAllocation(std::vector<pugi::xml_n
     return cradle;
 }
 
+std::vector<pugi::xml_node> generator::attatchMax(std::vector<pugi::xml_node>& parents){
+
+    std::vector<pugi::xml_node> cradle;
+
+    for(unsigned i = 0; i < parents.size(); i++){
+        cradle.push_back(parents[i].append_child((Max).c_str()));
+    }
+
+    return cradle;
+}
+
 std::vector<pugi::xml_node> generator::attatchResources(pugi::xml_node& parent, const std::vector<int>& ct){
     std::vector<pugi::xml_node> cradle;
     for(unsigned i = 0; i < Types.size(); i++){
@@ -92,6 +124,12 @@ std::vector<pugi::xml_node> generator::attatchResources(pugi::xml_node& parent, 
         cradle[i].append_child(pugi::node_pcdata).set_value(intToString(ct[i]).c_str());
     }
     return cradle;
+}
+
+void generator::attatchAvailable(pugi::xml_node& parent, const std::vector<int>& cts){
+
+    pugi::xml_node available = parent.append_child("Available");
+    attatchResources(available, cts);
 }
 
 
