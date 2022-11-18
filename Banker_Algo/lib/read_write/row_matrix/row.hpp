@@ -44,7 +44,7 @@ public:
     row& operator+=(const row& rhs);
     row& operator-=(const row& rhs);
 
-    unsigned size() const;
+    unsigned get_size() const noexcept;
 
     // Access
     int operator[](int index) const;

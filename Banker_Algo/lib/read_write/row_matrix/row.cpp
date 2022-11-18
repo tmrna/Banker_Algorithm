@@ -26,7 +26,7 @@ row::row(const row& toCpy){
 //#######################################   Comparison  ################################################################################
 
 bool row::operator<(const row& rhs) const{
-    assert(rhs.size() == size());
+    assert(rhs.values.size() == values.size());
     for(int i = 0; i < values.size(); i++){
         if(values[i] > rhs.values[i]) return false;
     }
@@ -34,7 +34,7 @@ bool row::operator<(const row& rhs) const{
 }
 
 bool row::operator>(const row& rhs) const{
-    assert(rhs.size() == size());
+    assert(rhs.values.size() == values.size());
     for(int i = 0; i < values.size(); i++){
         if(values[i] < rhs.values[i]) return false;
     }
@@ -92,8 +92,9 @@ row& row::operator-=(const row& rhs){
 //#################################################  Other  #################################################################
 
 
-unsigned row::size() const{
-    return values.size();
+unsigned row::get_size() const noexcept{
+    unsigned res = values.size();
+    return res;
 }
 
 

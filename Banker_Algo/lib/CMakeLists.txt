@@ -17,6 +17,8 @@ add_executable(row_cpy_ctor tests/rowTests/rowCtorCpy.cpp)
 add_executable(row_less_than_greater_than tests/rowTests/rowLTGT.cpp)
 # operator+
 add_executable(row_add tests/rowTests/rowAdd.cpp)
+# size
+add_executable(row_size tests/rowTests/rowSize.cpp)
 
 
 # LINK ROW EXEC
@@ -24,6 +26,7 @@ target_link_libraries(row_default_ctor row_matrix)
 target_link_libraries(row_cpy_ctor row_matrix)
 target_link_libraries(row_less_than_greater_than row_matrix)
 target_link_libraries(row_add row_matrix)
+target_link_libraries(row_size row_matrix)
 
 
 # ADD ROW TESTS
@@ -31,6 +34,7 @@ add_test(test_row_ctor_default row_default_ctor)
 add_test(test_row_ctor_cpy row_cpy_ctor)
 add_test(test_row_less_than_greater_than row_less_than_greater_than)
 add_test(test_row_add row_add)
+add_test(test_row_size row_size)
 
 ######################################################################################################################################################
 ######################################################################################################################################################

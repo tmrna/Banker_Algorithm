@@ -35,7 +35,7 @@ std::pair<unsigned, unsigned> matrix::size() const{
 
     res.first = rows.size();
     if(!rows.empty()){
-        res.second = rows[0].size();
+        res.second = rows[0].get_size();
     }
 
     return res;
@@ -45,7 +45,7 @@ void matrix::append(const row& toAppend){
 
     if(!rows.empty()){
         // matrix size will be set by then, previous rows will all be same size
-        assert(rows[0].size() == toAppend.size());
+        assert(rows[0].size() == toAppend.get_size());
     }
     rows.push_back(toAppend);
 }
