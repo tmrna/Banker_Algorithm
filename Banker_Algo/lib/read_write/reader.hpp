@@ -8,15 +8,15 @@
 class reader{
 
 private:
-    generator gen;
+    pugi::xml_document target;
 public:
 
     reader(){}
     ~reader(){}
 
+    // create gen and load file
     reader(const char*);
     reader(std::string);
-    reader(generator);
 
     matrix getAllocated();
 
@@ -26,7 +26,7 @@ public:
 
     void loadFile(const std::string&);
 
-
+    void loadExample();
 
 };
 

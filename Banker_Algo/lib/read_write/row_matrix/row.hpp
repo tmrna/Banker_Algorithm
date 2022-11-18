@@ -50,5 +50,8 @@ public:
     int operator[](int index) const;
     int& operator[](int);
     bool empty() const;
+
+    // adding on
+    void push_back(int element){values.push_back(element);}
 };
 #endif

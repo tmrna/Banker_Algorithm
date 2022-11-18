@@ -13,8 +13,6 @@ private:
     pugi::xml_document doc;
     std::string path;
 
-
-
 public:
     generator(){/*handled by stl and pugi*/}
     ~generator(){/*handled by stl and pugi*/}
@@ -43,6 +41,19 @@ public:
 
     std::string intToString(int);
 
+    void getNewDoc(std::string newPath){
+        path = newPath;
+        doc.load_string(newPath.c_str());
+    }
+
+    void printDoc(){doc.save(std::cout, " ");}
+
+    std::string saveDoc(){
+        doc.save_file(path.c_str());
+        return path;
+    }
+
+    std::string getPath(){return path;}
 };
 
 #endif

@@ -78,10 +78,6 @@ void generator::generateExample(){
     std::vector<int> availCt = {3, 3, 2};
 
     attatchAvailable(root, availCt);
-
-    // output xml file to console
-   doc.save(std::cout, " ");
-  
 }
 
 void generator::versionEncodingStandaloneSetup(pugi::xml_node& declNode){
@@ -132,6 +128,7 @@ void generator::attatchAvailable(pugi::xml_node& parent, const std::vector<int>&
     pugi::xml_node available = parent.append_child("Available");
     attatchResources(available, cts);
 }
+
 
 
 std::string generator::intToString(int val){
