@@ -28,9 +28,15 @@ public:
 
     void loadFile(const std::string&);
 
-    void loadExample();
+    std::string loadExample();
 
     int charToInt(const char*);
+
+    std::vector<pugi::xml_node> fetchProcessNodes();
+
+    std::vector<pugi::xml_node> fetchMaxNodes();
+
+    std::vector<pugi::xml_node> fetchAllocNodes();
 
 };
 

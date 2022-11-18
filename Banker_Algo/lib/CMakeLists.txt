@@ -70,6 +70,16 @@ add_test(test_matrix_append matrix_append)
 
 # READER TESTS
 
+# getAllocator
+add_executable(reader_alloc tests/readerTests/readerGetAllocated.cpp)
+
+
+# LINK READER TESTS
+target_link_libraries(reader_alloc read_write row_matrix)
+
+# ADD READER TESTS
+add_test(test_reader_alloc reader_alloc)
+
 ######################################################################################################################################################
 ######################################################################################################################################################
 
