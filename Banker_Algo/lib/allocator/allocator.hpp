@@ -12,17 +12,30 @@ private:
     matrix allocated;
     matrix max;
     matrix need;
+    std::vector<std::string> safeSequence;
+    bool safeState;
 
 public:
 
-    allocator(){}
+    allocator(){safeState = false;}
     ~allocator(){}
 
     void setAvailable(const row&);
     void setAllocated(const matrix&);
     void setMax(const matrix&);
 
-    std::vector<std::string> getSafeSequence();
+    void genNeed();
+
+    void genSafeSequence();
+    
+    void useProcess(int);
+
+    bool canUse(int);
+
+    bool done();
+
+    std::vector<std::string> getSafeSequence(){return safeSequence;}
+
 
 };
 

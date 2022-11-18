@@ -29,16 +29,9 @@ void matrix::checkDim(){
     }
 }
 
-std::pair<unsigned, unsigned> matrix::size() const{
+unsigned matrix::size() const{
 
-    std::pair<int, int> res = {0,0};
-
-    res.first = rows.size();
-    if(!rows.empty()){
-        res.second = rows[0].get_size();
-    }
-
-    return res;
+    return rows.size();
 }
 // adds on row to the bottom of matrix
 void matrix::append(const row& toAppend){
