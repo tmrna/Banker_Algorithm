@@ -2,6 +2,8 @@
 #define READER_HPP
 
 #include "generator.hpp"
+#include "row_matrix/matrix.hpp"
+#include "row_matrix/row.hpp"
 
 class reader{
 
@@ -16,11 +18,11 @@ public:
     reader(std::string);
     reader(generator);
 
-    std::vector<std::vector<int>> getAllocated();
+    matrix getAllocated();
 
-    std::vector<std::vector<int>> getMaximums();
+    matrix getMaximums();
 
-    std::vector<int> getAvail();
+    row getAvail();
 
     void loadFile(const std::string&);
 

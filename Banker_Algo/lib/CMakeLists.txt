@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.22.1)
 project(Banker_Algorithm VERSION 1.0.0)
 include(CTest)
 
-add_subdirectory(row_matrix)
-add_subdirectory(read_write)
+#add_subdirectory(read_write)
 
+add_subdirectory(read_write)
 #add_subdirectory(tests)
 # ROW TESTS
 # default ctor + dtor
