@@ -77,6 +77,9 @@ matrix& operator-=(const matrix&);
 row operator[](int) const;
 // subscript operator (ref)
 row& operator[](int);
+
+// printing
+void printMatrix();
 };
 
 #endif

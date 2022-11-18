@@ -48,18 +48,22 @@ add_executable(matrix_dim tests/matrixTests/matrixDim.cpp)
 add_executable(matrix_size tests/matrixTests/matrixSize.cpp)
 # swap
 add_executable(matrix_swap tests/matrixTests/matrixSwap.cpp)
+# append
+add_executable(matrix_append tests/matrixTests/matrixAppend.cpp)
 
 # LINK MATRIX TESTS
 target_link_libraries(matrix_default_ctor row_matrix)
 target_link_libraries(matrix_dim row_matrix)
 target_link_libraries(matrix_size row_matrix)
 target_link_libraries(matrix_swap row_matrix)
+target_link_libraries(matrix_append row_matrix)
 
 # ADD MATRIX TESTS
-add_test(matrix_ctor matrix_default_ctor)
-add_test(matrix_dimensions matrix_dim)
-add_test(matrix_get_size matrix_size)
-add_test(matrix_row_swap matrix_swap)
+add_test(test_matrix_ctor matrix_default_ctor)
+add_test(test_matrix_dimensions matrix_dim)
+add_test(test_matrix_get_size matrix_size)
+add_test(test_matrix_swap matrix_swap)
+add_test(test_matrix_append matrix_append)
 
 ######################################################################################################################################################
 ######################################################################################################################################################

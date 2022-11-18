@@ -21,10 +21,10 @@ matrix::~matrix(){/*handled by stl*/}
 void matrix::checkDim(){
     if(!rows.empty()){
    
-        unsigned sz = rows[0].size();
+        unsigned sz = rows[0].get_size();
         for(unsigned i = 0; i < rows.size(); i++){
             // make sure that we do not have mismatched rows
-            assert(rows[i].size() == sz);
+            assert(rows[i].get_size() == sz);
         }
     }
 }
@@ -45,7 +45,7 @@ void matrix::append(const row& toAppend){
 
     if(!rows.empty()){
         // matrix size will be set by then, previous rows will all be same size
-        assert(rows[0].size() == toAppend.get_size());
+        assert(rows[0].get_size() == toAppend.get_size());
     }
     rows.push_back(toAppend);
 }
@@ -153,4 +153,14 @@ row matrix::operator[](int index) const{
 
 row& matrix::operator[](int index){
     return rows[index];
+}
+
+// printing
+
+void matrix::printMatrix(){
+        for(row slot : rows){
+        std::cout <<"|   ";
+        slot.printRow();
+        std::cout << "   |" << std::endl;
+    }
 }

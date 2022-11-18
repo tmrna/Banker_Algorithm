@@ -53,5 +53,8 @@ public:
 
     // adding on
     void push_back(int element){values.push_back(element);}
+
+    // printing
+    void printRow();
 };
 #endif

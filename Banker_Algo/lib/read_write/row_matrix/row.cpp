@@ -111,3 +111,13 @@ int& row::operator[](int loc){
 bool row::empty() const{
     return values.empty();
 }
+
+
+//################################################  Printing ##########################################################
+
+void row::printRow(){
+    for(unsigned i = 0; i < values.size(); i++){
+        std::cout << values[i];
+        if(i < values.size() -1) std::cout << ", ";
+    }
+}
