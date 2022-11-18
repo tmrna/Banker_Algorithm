@@ -164,3 +164,13 @@ void matrix::printMatrix(){
         std::cout << "   |" << std::endl;
     }
 }
+
+// occupation status
+
+void matrix::useRow(int rowNum){
+    rows[rowNum].use();
+}
+
+bool matrix::getRowStatus(int rowNum){
+    return rows[rowNum].getStatus();
+}

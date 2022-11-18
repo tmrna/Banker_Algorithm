@@ -18,10 +18,10 @@ class row{
 private:
 
     std::vector<int> values;
+    bool inUse;
 
 public:
 
-    // Default Ctor handled by stl
     row();
     // Ctor (from vec)
     row(const std::vector<int>&);
@@ -56,5 +56,10 @@ public:
 
     // printing
     void printRow();
+
+    // mark row as used
+    void use();
+    // check if used
+    bool getStatus();
 };
 #endif

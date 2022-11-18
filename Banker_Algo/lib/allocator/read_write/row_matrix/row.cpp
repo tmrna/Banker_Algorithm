@@ -11,11 +11,12 @@ Fall 2022
 
 //###########################################      Ctor + Dtor  #######################################################################
 
-row::row(){/*handled by stl*/}
+row::row(){inUse = true;}
 
 row::~row(){/*handled by stl*/}
 
 row::row(const std::vector<int>& toSet){
+    inUse = true;
     values = toSet;
 }
 
@@ -120,4 +121,14 @@ void row::printRow(){
         std::cout << values[i];
         if(i < values.size() -1) std::cout << ", ";
     }
+}
+
+//######################################## row use status #########################################################
+
+void row::use(){
+    inUse = false;
+}
+
+bool row::getStatus(){
+    return inUse;
 }

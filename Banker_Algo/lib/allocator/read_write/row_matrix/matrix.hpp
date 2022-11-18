@@ -80,6 +80,11 @@ row& operator[](int);
 
 // printing
 void printMatrix();
+
+// use row
+void useRow(int);
+bool getRowStatus(int);
+
 };
 
 #endif
