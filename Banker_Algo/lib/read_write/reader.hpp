@@ -1,6 +1,8 @@
 #ifndef READER_HPP
 #define READER_HPP
 
+#include <cmath>
+
 #include "generator.hpp"
 #include "row_matrix/matrix.hpp"
 #include "row_matrix/row.hpp"
@@ -27,6 +29,8 @@ public:
     void loadFile(const std::string&);
 
     void loadExample();
+
+    int charToInt(const char*);
 
 };
 

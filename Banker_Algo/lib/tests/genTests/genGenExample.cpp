@@ -4,4 +4,5 @@
 int main(){
     generator tester;
     tester.generateExample();
+    tester.printDoc();
 }

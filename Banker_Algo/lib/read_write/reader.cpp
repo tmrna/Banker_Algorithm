@@ -34,7 +34,7 @@ matrix reader::getAllocated(){
     for(unsigned i = 0; i < processes.size(); i++){
         row toAdd;
         for(pugi::xml_node resource : processes[i].child("Allocation")){
-            toAdd.push_back(int(resource.value()));
+            toAdd.push_back(charToInt(resource.value()));
         }
         allocations.append(toAdd);
     }
@@ -50,3 +50,11 @@ row reader::getAvail(){
 
 }
 
+int reader::charToInt(const char* input){
+    int res = 0;
+    std::string toConvert(input);
+    for(int i = toConvert.size() - 1, j = 0; i >=0; i--, j++){
+        res += pow(toConvert[i] - int('0'), j);
+    }
+    return res;
+}

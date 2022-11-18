@@ -12,6 +12,7 @@ class generator{
 private:
     pugi::xml_document doc;
     std::string path;
+    
 
 public:
     generator(){/*handled by stl and pugi*/}
@@ -54,6 +55,8 @@ public:
     }
 
     std::string getPath(){return path;}
+
+    std::string getResourceType(int);
 };
 
 #endif

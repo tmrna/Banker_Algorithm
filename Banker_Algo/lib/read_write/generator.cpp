@@ -9,6 +9,7 @@ static const std::vector<std::string> Nums = {"0", "1", "2", "3", "4"};
 static const std::vector<std::string> Types = {"A", "B", "C"};
 
 
+//########################################################   Ctor and genExample #####################################################################
 generator::generator(const std::string& DestinationPath){
     path = DestinationPath;
     doc.load_string(PUGIXML_TEXT(DestinationPath.c_str()));
@@ -80,6 +81,8 @@ void generator::generateExample(){
     attatchAvailable(root, availCt);
 }
 
+//########################################################  attathment and setup ##########################################################################
+
 void generator::versionEncodingStandaloneSetup(pugi::xml_node& declNode){
     declNode.append_attribute("version") = "1.0";
     declNode.append_attribute("encoding") = "uft-8";
@@ -90,14 +93,16 @@ void generator::attatchProcesses(pugi::xml_node& parent, std::vector<pugi::xml_n
     std::string p = "p";
 
     for(unsigned i = 0; i < NumProcesses; i++){
-
-        cradle.push_back(parent.append_child((p + Nums[i]).c_str()));
+        // attatches a number of processes to the parent node
+        cradle.push_back(parent.append_child((p + intToString(i)).c_str()));
     }
 }
 
 std::vector<pugi::xml_node> generator::attatchAllocation(std::vector<pugi::xml_node>& parents){
     std::vector<pugi::xml_node> cradle;
+
     for(unsigned i = 0; i < parents.size(); i++){
+        // attatches Allocation node to the parent
         cradle.push_back(parents[i].append_child((Allocation).c_str()));
     }
     return cradle;
@@ -108,6 +113,7 @@ std::vector<pugi::xml_node> generator::attatchMax(std::vector<pugi::xml_node>& p
     std::vector<pugi::xml_node> cradle;
 
     for(unsigned i = 0; i < parents.size(); i++){
+        // attatches Max node to the parent
         cradle.push_back(parents[i].append_child((Max).c_str()));
     }
 
@@ -115,21 +121,26 @@ std::vector<pugi::xml_node> generator::attatchMax(std::vector<pugi::xml_node>& p
 }
 
 std::vector<pugi::xml_node> generator::attatchResources(pugi::xml_node& parent, const std::vector<int>& ct){
+
     std::vector<pugi::xml_node> cradle;
+
     for(unsigned i = 0; i < Types.size(); i++){
-        cradle.push_back(parent.append_child(Types[i].c_str()));
+        // gets resource type, supports up to 26 types
+        cradle.push_back(parent.append_child(getResourceType(i).c_str()));
+
         cradle[i].append_child(pugi::node_pcdata).set_value(intToString(ct[i]).c_str());
     }
     return cradle;
 }
 
 void generator::attatchAvailable(pugi::xml_node& parent, const std::vector<int>& cts){
-
+    // attatches available cat to parent
     pugi::xml_node available = parent.append_child("Available");
     attatchResources(available, cts);
 }
 
 
+//#######################################################  int to string and getResourceTpye #############################################################
 
 std::string generator::intToString(int val){
     std::vector<char> tmp;
@@ -143,5 +154,12 @@ std::string generator::intToString(int val){
         res+=tmp[i];
     }
     if(res.empty()) return "0";
+    return res;
+}
+
+std::string generator::getResourceType(int selector){
+    assert(selector < 26);
+    std::string res;
+    res += char(selector + int('A'));
     return res;
 }
