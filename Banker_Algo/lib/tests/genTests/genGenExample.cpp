@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../../read_write/generator.hpp"
+#include "../../allocator/read_write/generator.hpp"
 
 int main(){
     generator tester;

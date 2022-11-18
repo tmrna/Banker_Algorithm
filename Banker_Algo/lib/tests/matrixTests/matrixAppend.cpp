@@ -1,4 +1,4 @@
-#include "../../read_write/row_matrix/matrix.hpp"
+#include "../../allocator/read_write/row_matrix/matrix.hpp"
 int main(){
     matrix testMatr;
     row testRowA({1, 2, 3, 4});

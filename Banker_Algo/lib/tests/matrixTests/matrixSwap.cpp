@@ -1,4 +1,4 @@
-#include "../../read_write/row_matrix/matrix.hpp"
+#include "../../allocator/read_write/row_matrix/matrix.hpp"
 int main(){
     matrix tester;
     for(int i = 0; i < 100; i++){
