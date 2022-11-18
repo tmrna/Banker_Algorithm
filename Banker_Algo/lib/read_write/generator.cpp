@@ -5,8 +5,6 @@ static const int NumProcesses = 5;
 static const std::string Allocation = "Allocation";
 static const std::string Max = "Max";
 static const std::string P = "p";
-static const std::vector<std::string> Nums = {"0", "1", "2", "3", "4"};
-static const std::vector<std::string> Types = {"A", "B", "C"};
 
 
 //########################################################   Ctor and genExample #####################################################################
@@ -26,27 +24,24 @@ void generator::generateExample(){
     path = "GivenExample.xml";
     
     // our initial declaration node
-    pugi::xml_node declNode = doc.append_child(pugi::node_declaration);
+    declNode = doc.append_child(pugi::node_declaration);
     // seting up all the things we need for version encoding and if standalone
     versionEncodingStandaloneSetup(declNode);
 
     // creating our root node
-    pugi::xml_node root = doc.append_child("rootNode");
+    root = doc.append_child("rootNode");
 
     // adding our list of processes to the root node
-    pugi::xml_node processDiv = root.append_child("processes");
-
-    // vector for the processes
-    std::vector<pugi::xml_node> processes;
+    processDiv = root.append_child("processes");
 
     // processes[i] is pi
     attatchProcesses(processDiv, processes);
 
     // sets up an allocation node for each process
-    std::vector<pugi::xml_node> allocations = attatchAllocation(processes);
+    allocations = attatchAllocation(processes);
 
     // given counts for allocation
-    std::vector<std::vector<int>> ctsAllo = {
+    ctsAllo = {
    /*p0*/ {0, 1, 0},
    /*p1*/ {2, 0, 0},
    /*p2*/ {3, 0, 2},
@@ -57,14 +52,13 @@ void generator::generateExample(){
     // our given resources being assigned to counts
     std::vector<std::vector<pugi::xml_node>> resourceAssignments;
     for(unsigned i = 0; i < ctsAllo.size(); i++){
-        resourceAssignments.push_back(
-            (attatchResources(allocations[i], ctsAllo[i])));
+        attatchResources(allocations[i], ctsAllo[i]);
     }
 
 
-    std::vector<pugi::xml_node> maximums = attatchMax(processes);
+    maximums = attatchMax(processes);
 
-    std::vector<std::vector<int>> ctsMax {
+    ctsMax = {
         {7, 5, 3},
         {3, 2, 2},
         {9, 0, 2},
@@ -76,7 +70,7 @@ void generator::generateExample(){
         attatchResources(maximums[i], ctsMax[i]);
     }
 
-    std::vector<int> availCt = {3, 3, 2};
+    availCt = {3, 3, 2};
 
     attatchAvailable(root, availCt);
 }
@@ -124,7 +118,7 @@ std::vector<pugi::xml_node> generator::attatchResources(pugi::xml_node& parent, 
 
     std::vector<pugi::xml_node> cradle;
 
-    for(unsigned i = 0; i < Types.size(); i++){
+    for(unsigned i = 0; i < ct.size(); i++){
         // gets resource type, supports up to 26 types
         cradle.push_back(parent.append_child(getResourceType(i).c_str()));
 

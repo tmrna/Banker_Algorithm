@@ -10,9 +10,28 @@
 class generator{
 
 private:
+    // the document we are generating
     pugi::xml_document doc;
+    // path to destination to save doc
     std::string path;
-    
+    // number of processes
+    int numProcesses;
+    // the declaration node with ver, encrip, standalone
+    pugi::xml_node declNode;
+    // root node
+    pugi::xml_node root;
+    // contains all processes
+    pugi::xml_node processDiv;
+    // processes to be placed into process div
+    std::vector<pugi::xml_node> processes;
+    // allocation and max sections, parent is processes
+    std::vector<pugi::xml_node> allocations;
+    std::vector<pugi::xml_node> maximums;
+
+    // important counts
+    std::vector<int> availCt;
+    std::vector<std::vector<int>> ctsAllo;
+    std::vector<std::vector<int>> ctsMax;
 
 public:
     generator(){/*handled by stl and pugi*/}
