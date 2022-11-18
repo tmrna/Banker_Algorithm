@@ -22,6 +22,9 @@ public:
 
     std::vector<int> getAvail();
 
+    void loadFile(const std::string&);
+
+
 
 };
 

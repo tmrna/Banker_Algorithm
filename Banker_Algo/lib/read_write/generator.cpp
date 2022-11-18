@@ -11,6 +11,7 @@ static const std::vector<std::string> Types = {"A", "B", "C"};
 
 generator::generator(const std::string& DestinationPath){
     path = DestinationPath;
+    doc.load_string(PUGIXML_TEXT(DestinationPath.c_str()));
 }
 
 generator::generator(const generator& toCpy){

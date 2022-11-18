@@ -22,15 +22,6 @@ def setup_build_dir(destination_parent : str) -> None:
         print(path + destination + " already exists")
     make(destination)
     
-    
-setup_build_dir("/Banker_Algo/lib/read_write/deps/pugixml")
 
-setup_build_dir("/Banker_Algo/lib/read_write/deps")
-
-setup_build_dir("/Banker_Algo/lib/read_write")
-
-setup_build_dir("/Banker_Algo/lib/row_matrix")
-
-setup_build_dir("/Banker_Algo/lib")
-
-setup_build_dir("/Baner_Algo")
+#sets up build in path_to_proj/Banker_Algorithm
+setup_build_dir("")
