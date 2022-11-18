@@ -38,6 +38,10 @@ public:
 
     std::vector<pugi::xml_node> fetchAllocNodes();
 
+    pugi::xml_node fetchProc();
+
+    pugi::xml_node fetchAvailNode();
+
 };
 
 #endif
