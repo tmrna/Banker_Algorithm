@@ -30,7 +30,26 @@ add_test(test_row_less_than_greater_than row_less_than_greater_than)
 add_test(test_row_add row_add)
 
 # MATRIX TESTS
+# ctor dtor
+add_executable(matrix_default_ctor tests/matrixTests/matrixCtor.cpp)
+# dimension
+add_executable(matrix_dim tests/matrixTests/matrixDim.cpp)
+# size
+add_executable(matrix_size tests/matrixTests/matrixSize.cpp)
+# swap
+add_executable(matrix_swap tests/matrixTests/matrixSwap.cpp)
 
+# LINK MATRIX TESTS
+target_link_libraries(matrix_default_ctor row_matrix)
+target_link_libraries(matrix_dim row_matrix)
+target_link_libraries(matrix_size row_matrix)
+target_link_libraries(matrix_swap row_matrix)
+
+# ADD MATRIX TESTS
+add_test(matrix_ctor matrix_default_ctor)
+add_test(matrix_dimensions matrix_dim)
+add_test(matrix_get_size matrix_size)
+add_test(matrix_row_swap matrix_swap)
 
 # READER TESTS
 
