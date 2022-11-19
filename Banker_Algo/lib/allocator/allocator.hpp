@@ -3,6 +3,8 @@
 
 #include "read_write/row_matrix/row.hpp"
 #include "read_write/row_matrix/matrix.hpp"
+#include "read_write/reader.hpp"
+
 
 class allocator{
 
@@ -27,6 +29,14 @@ public:
     void genNeed();
 
     void genSafeSequence();
+    void genSafeSequence(const char*);
+    void genSafeSequence(std::string);
+
+    void printSafeSequence();
+
+    void printAll();
+
+    void loadFromFile(const std::string&);
     
     void useProcess(int);
 

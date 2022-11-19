@@ -28,6 +28,9 @@ matrix();
 // ctor for row
 matrix(const row&);
 
+// ctor for 2d vec
+matrix(const std::vector<std::vector<int>>&);
+
 // cpy ctor
 matrix(const matrix&);
 

@@ -6,6 +6,8 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <fstream>
+#include <algorithm>
 
 class generator{
 
@@ -43,8 +45,10 @@ public:
     // cpy ctor
     generator(const generator&);
 
-    // generates the given scenario for the assignment and writes to memory, no need to write to disk
+    // generates example
     void generateExample();
+
+    std::string genFile(std::string);
 
     void attatchProcesses(pugi::xml_node&, std::vector<pugi::xml_node>&);
 
@@ -60,6 +64,7 @@ public:
     void versionEncodingStandaloneSetup(pugi::xml_node&);
 
     std::string intToString(int);
+    int stringToInt(const std::string&);
 
     void getNewDoc(std::string newPath){
         path = newPath;
@@ -76,6 +81,8 @@ public:
     std::string getPath(){return path;}
 
     std::string getResourceType(int);
+
+    void setupFromGen(std::vector<std::vector<int>>&, std::ifstream&, std::string&);
 };
 
 #endif

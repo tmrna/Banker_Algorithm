@@ -6,18 +6,20 @@ reader::reader(const char* path){
 }
 
 reader::reader(std::string path){
+    
     loadFile(path);
 }
 
 void reader::loadFile(const std::string& path){
-    target.load_string(path.c_str());
+    
+    if(!target.load_file((path).c_str()))std::cout << "failed to load " << path << std::endl << std::endl;
 }
 
 std::string reader::loadExample(){
     generator gen;
     gen.generateExample();
     std::string pathToDoc = gen.saveDoc();
-    target.load_file(pathToDoc.c_str());
+    loadFile(pathToDoc);
     return pathToDoc;
 }
 
@@ -25,7 +27,6 @@ std::string reader::loadExample(){
 matrix reader::getAllocated(){
 
     std::vector<pugi::xml_node> processes = fetchProcessNodes();
-
     std::vector<pugi::xml_node> alloc = fetchAllocNodes();
 
     matrix allocations;
@@ -41,11 +42,11 @@ matrix reader::getAllocated(){
 
         allocations.append(nextRow);
     }
-    
     return allocations;
 }
 
 matrix reader::getMaximums(){
+
     std::vector<pugi::xml_node> maxNodes = fetchMaxNodes();
 
     matrix res;
@@ -59,18 +60,22 @@ matrix reader::getMaximums(){
             toAppend.push_back(charToInt(toAdd.child_value()));
             toAdd = toAdd.next_sibling();
         }
+        res.append(toAppend);
     }
 
     return res;
 }
 
 row reader::getAvail(){
+
     row res;
     pugi::xml_node toAdd = fetchAvailNode().first_child();
 
     while(toAdd.name() != ""){
         res.push_back(charToInt(toAdd.child_value()));
+        toAdd = toAdd.next_sibling();
     }
+
 
     return res;
 }
@@ -86,6 +91,7 @@ int reader::charToInt(const char* input){
 
 
 std::vector<pugi::xml_node> reader::fetchProcessNodes(){
+
     std::vector<pugi::xml_node> res;
     
     pugi::xml_node toAdd = fetchProc().first_child();
@@ -99,14 +105,17 @@ std::vector<pugi::xml_node> reader::fetchProcessNodes(){
 }
 
 std::vector<pugi::xml_node> reader::fetchMaxNodes(){
+
     std::vector<pugi::xml_node> res;
     std::vector<pugi::xml_node> alloc = fetchAllocNodes();
     for(unsigned i = 0; i < alloc.size(); i++){
         res.push_back(alloc[i].next_sibling());
     }
+    return res;
 }
 
 std::vector<pugi::xml_node> reader::fetchAllocNodes(){
+
     std::vector<pugi::xml_node> res;
 
     auto processes = fetchProcessNodes();
@@ -119,9 +128,14 @@ std::vector<pugi::xml_node> reader::fetchAllocNodes(){
 }
 
 pugi::xml_node reader::fetchProc(){
+
     return target.first_child().first_child();
 }
 
 pugi::xml_node reader::fetchAvailNode(){
-    return fetchProc().next_sibling();
+
+    //return fetchProc().next_sibling();
+    pugi::xml_node proc = fetchProc();
+    pugi::xml_node avail = proc.next_sibling();
+    return avail;
 }

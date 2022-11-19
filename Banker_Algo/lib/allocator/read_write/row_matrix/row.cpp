@@ -21,6 +21,7 @@ row::row(const std::vector<int>& toSet){
 }
 
 row::row(const row& toCpy){
+    inUse = toCpy.inUse;
     values = toCpy.values;
 }
 

@@ -7,6 +7,10 @@
 #include "row_matrix/matrix.hpp"
 #include "row_matrix/row.hpp"
 
+#include <filesystem>
+#include <unistd.h>
+
+
 class reader{
 
 private:

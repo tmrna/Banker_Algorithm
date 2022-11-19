@@ -14,6 +14,14 @@ matrix::matrix(const matrix& rhs){
     rows = rhs.rows;
 }
 
+//ctor for 2d vec
+matrix::matrix(const std::vector<std::vector<int>>& toAdd){
+    for(unsigned i = 0; i < toAdd.size(); i++){
+        row filler = toAdd[i];
+        append(filler);
+    }
+}
+
 // dtor
 matrix::~matrix(){/*handled by stl*/}
 

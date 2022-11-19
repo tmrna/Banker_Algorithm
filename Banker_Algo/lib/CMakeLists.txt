@@ -5,6 +5,7 @@ include(CTest)
 
 add_subdirectory(allocator)
 
+
 ######################################################################################################################################################
 ######################################################################################################################################################
 
@@ -70,7 +71,7 @@ add_test(test_matrix_append matrix_append)
 
 # READER TESTS
 
-# getAllocator
+# getAllocated matrix
 add_executable(reader_alloc tests/readerTests/readerGetAllocated.cpp)
 
 
@@ -99,5 +100,19 @@ add_test(gen_generate_example gen_example)
 
 ######################################################################################################################################################
 ######################################################################################################################################################
+
+# ALLOCATOR TESTS
+# setting
+add_executable(allocator_set tests/allocatorTests/allocatorSetter.cpp)
+# solving example
+add_executable(solve_example tests/allocatorTests/allocatorExample.cpp)
+
+# LINK ALLOCATOR TESTS
+target_link_libraries(allocator_set allocator read_write row_matrix)
+target_link_libraries(solve_example allocator read_write row_matrix)
+
+# ADD ALLOCATOR TESTS
+add_test(test_allocator_set allocator_set)
+add_test(test_solve_example solve_example)
 
 enable_testing()
