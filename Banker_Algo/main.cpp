@@ -12,23 +12,25 @@
 void printHelp();
 
 int main(int argc, char** argv){
-    std::cout << "Running main";
     if(argc == 1){ 
         printHelp();
     }
-
-    if(argv[1] == "--generate-example"){
-        std::cout << "\n\n    Generating example...";
+    std::vector<std::string> args;
+    for(int i = 0; i < argc; i++){
+        std::string sample = argv[i];
+        args.push_back(sample);
+    }
+    if(args[1] == "--generate-example"){
+        std::cout << "loading example..." << std::endl << std::endl;
         allocator solver;
-        reader example;
-        std::string pathToExample = example.loadExample();
-        try{
-            solver.genSafeSequence(pathToExample);
-            solver.printSafeSequence();
-        }
-        catch(std::string noGo){
-            std::cout << noGo << std::endl;
-        }
+        reader getter;
+        solver.loadFromFile(getter.loadExample());
+        solver.genNeed();
+        std::cout << "current status is\n";
+        solver.printAll();
+        std::cout << "solving..." << std::endl;
+        solver.genSafeSequence();
+        solver.printSafeSequence();
     }
 
     

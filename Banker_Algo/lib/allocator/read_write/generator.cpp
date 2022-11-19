@@ -169,8 +169,10 @@ void generator::setupFromGen(std::vector<std::vector<int>>& cts, std::ifstream& 
         for(int i = 0; i < line.length() && line != "@"; i++){
             if(line[i] != ','){
                 num += line[i];
+                std::cout << "Currnet num  is " << num << std::endl << std::endl;
             }
             else{
+                std::cout << num << std::endl;
                 app.push_back(stringToInt(num));
                 num = "";
             }
