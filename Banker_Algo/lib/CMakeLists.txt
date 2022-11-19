@@ -89,14 +89,18 @@ add_test(test_reader_alloc reader_alloc)
 add_executable(gen_default_ctor tests/genTests/genCtor.cpp)
 # generate example
 add_executable(gen_example tests/genTests/genGenExample.cpp)
+# generate from file
+add_executable(gen_file tests/genTests/genGenFile.cpp)
 
 # LINK GENERATOR TESTS
 target_link_libraries(gen_default_ctor read_write)
 target_link_libraries(gen_example read_write)
+target_link_libraries(gen_file read_write)
 
 # ADD GENERATOR TESTS
-add_test(gen_ctor_default gen_default_ctor)
-add_test(gen_generate_example gen_example)
+add_test(test_gen_ctor_default gen_default_ctor)
+add_test(test_gen_generate_example gen_example)
+add_test(test_gen_file gen_file)
 
 ######################################################################################################################################################
 ######################################################################################################################################################

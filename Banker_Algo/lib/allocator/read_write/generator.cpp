@@ -80,8 +80,9 @@ void generator::generateExample(){
 
 std::string generator::genFile(std::string targetPath){
     std::string destPath;
-    for(int i = 0; targetPath[i] != '.' && i < targetPath.length(); i++){
-        destPath+= targetPath[i];
+    std::cout << "target path: " << targetPath << std::endl;
+    for(int i = 0; i < targetPath.length() - 3; i++){
+        destPath += targetPath[i];
     }
     destPath +=".xml";
 
@@ -107,13 +108,16 @@ std::string generator::genFile(std::string targetPath){
         if(line[i] != ','){
             nums += line[i];
         }
+        else if(i == line.length() - 1){
+            nums += line[i];
+        }
         else{
             availCt.push_back(stringToInt(nums));
             nums = "";
         }
 
     }
-    availCt.push_back(stringToInt(nums));
+    //availCt.push_back(stringToInt(nums));
 
     // our initial declaration node
     declNode = doc.append_child(pugi::node_declaration);
@@ -146,7 +150,8 @@ std::string generator::genFile(std::string targetPath){
     }
 
     attatchAvailable(root, availCt);
-    doc.save_file(destPath.c_str(), PUGIXML_TEXT(" "));
+    std::cout << "saving to " << destPath << std::endl;
+    if(doc.save_file(destPath.c_str(), PUGIXML_TEXT(" "))) std::cout << "sucessful save!" << std::endl;
     return destPath;
 }
 
@@ -170,7 +175,7 @@ void generator::setupFromGen(std::vector<std::vector<int>>& cts, std::ifstream& 
                 num = "";
             }
         }
-        app.push_back(stringToInt(num));
+        //app.push_back(stringToInt(num));
         if(app.size() > rowLen) rowLen = app.size();
         cts.push_back(app);
 
