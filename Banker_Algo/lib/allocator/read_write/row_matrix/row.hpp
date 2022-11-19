@@ -61,5 +61,6 @@ public:
     void use();
     // check if used
     bool getStatus();
+    void makeUsable(){inUse = true;}
 };
 #endif

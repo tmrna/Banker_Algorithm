@@ -42,4 +42,13 @@ int main(){
         assert(!(sameL > sameR));
         assert(!(sameR < sameL));
     }
+
+    {
+        std::vector<int> a = {1, 2, 2};
+        std::vector<int> b = {3,2,2};
+        row rowA(a);
+        row rowB(b);
+        assert(b > a);
+        assert(b >= a);
+    }
 }

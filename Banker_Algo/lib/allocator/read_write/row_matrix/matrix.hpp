@@ -86,6 +86,7 @@ void printMatrix();
 
 // use row
 void useRow(int);
+void setUsable();
 bool getRowStatus(int);
 
 };

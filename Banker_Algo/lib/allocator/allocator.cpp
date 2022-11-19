@@ -31,35 +31,33 @@ void allocator::useProcess(int i){
 }
 
 bool allocator::canUse(int i){
-    //return available >= need[i] && max[i].getStatus();
- 
-    return max[i].getStatus();
+
+    for(int j = 0; j < available.get_size(); j++){
+
+        if(available[j] < need[i][j]) return false;
+        if(!need[i].getStatus()) return false;
+    }
+    return true;
+
 }
 
 bool allocator::done(){
-    // when we are done we will have as many processes as rows
-    //std::cout << "checking if done" << std::endl << std::endl;
+
     return safeSequence.size() == max.size();
 }
 
 void allocator::genSafeSequence(){
 
     genNeed();
-    int prevRemainingCt = 0;
-    bool stuck = false;
-
+    allocated.setUsable();
+    max.setUsable();
+    need.setUsable();
     for(unsigned i = 0; !done(); i = (i+1)%(max.size())){
 
         if(canUse(i)){
-
             useProcess(i);
         }
-        if(stuck && safeSequence.size() == max.size() -1){
-            std::string error = "No safe sequence exists";
-            throw error;
-        }
-        if(safeSequence.size() == max.size() - 1){
-            stuck = true;
+        if(!canUse(i)){
         }
     }
 }

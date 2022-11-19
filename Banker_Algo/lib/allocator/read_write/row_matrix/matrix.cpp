@@ -175,3 +175,9 @@ void matrix::useRow(int rowNum){
 bool matrix::getRowStatus(int rowNum){
     return rows[rowNum].getStatus();
 }
+
+void matrix::setUsable(){
+    for(unsigned i = 0; i < rows.size(); i++){
+        rows[i].makeUsable();
+    }
+}

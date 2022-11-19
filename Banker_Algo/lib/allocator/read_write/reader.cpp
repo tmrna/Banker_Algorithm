@@ -12,7 +12,10 @@ reader::reader(std::string path){
 
 void reader::loadFile(const std::string& path){
     
-    if(!target.load_file((path).c_str()))std::cout << "failed to load " << path << std::endl << std::endl;
+    if(!target.load_file((path).c_str())){
+        std::cout << "failed to load " << path << std::endl << std::endl;
+        //exit(1);
+    }
 }
 
 std::string reader::loadExample(){

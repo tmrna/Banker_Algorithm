@@ -32,7 +32,7 @@ bool row::operator<(const row& rhs) const{
     for(int i = 0; i < values.size(); i++){
         if(values[i] > rhs.values[i]) return false;
     }
-    return rhs.values != values;
+    return (*this != rhs);
 }
 
 bool row::operator>(const row& rhs) const{
@@ -40,7 +40,7 @@ bool row::operator>(const row& rhs) const{
     for(int i = 0; i < values.size(); i++){
         if(values[i] < rhs.values[i]) return false;
     }
-    return rhs.values != values;
+    return !(*this == rhs);
 }
 
 bool row::operator<=(const row& rhs) const{
@@ -56,7 +56,11 @@ bool row::operator!=(const row& rhs) const{
 }
 
 bool row::operator==(const row& rhs) const{
-    return values == rhs.values;
+    if(values != rhs.values) return false;
+    for(int i = 0; i < rhs.values.size(); i++){
+        if(values[i] != rhs.values[i]) return false;
+    }
+    return true;
 }
 
 //###############################################    Addition / Subtraction  ######################################################

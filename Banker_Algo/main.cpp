@@ -15,25 +15,52 @@ int main(int argc, char** argv){
     if(argc == 1){ 
         printHelp();
     }
-    std::vector<std::string> args;
-    for(int i = 0; i < argc; i++){
-        std::string sample = argv[i];
-        args.push_back(sample);
-    }
-    if(args[1] == "--generate-example"){
-        std::cout << "loading example..." << std::endl << std::endl;
-        allocator solver;
-        reader getter;
-        solver.loadFromFile(getter.loadExample());
-        solver.genNeed();
-        std::cout << "current status is\n";
-        solver.printAll();
-        std::cout << "solving..." << std::endl;
-        solver.genSafeSequence();
-        solver.printSafeSequence();
+    else{
+        std::vector<std::string> args;
+        for(int i = 0; i < argc; i++){
+            std::string sample = argv[i];
+            args.push_back(sample);
+        }
+        if(args[1] == "--generate-example"){
+            std::cout << "loading example..." << std::endl << std::endl;
+            allocator solver;
+            reader getter;
+            solver.loadFromFile(getter.loadExample());
+            solver.genNeed();
+            std::cout << "current status is\n";
+            solver.printAll();
+            std::cout << "solving..." << std::endl;
+            solver.genSafeSequence();
+            solver.printSafeSequence();
+        }
+        if(args[1] == "--help"){
+            printHelp();
+        }
+        if(args[1] == "--solve"){
+            if(argc > 2){
+                for(unsigned i = 2; i < args.size(); i++){
+                    reader getter;
+                    allocator solver;
+
+                    solver.genSafeSequence(args[i]);
+                    solver.printSafeSequence();
+                }
+            }
+            else printHelp();
+        }
+        if(args[1] == "--gen"){
+            if(argc > 2){
+                for(unsigned i = 2; i < args.size(); i++){
+                    generator gen;
+                    gen.genFile(args[i]);
+                }
+            }
+            else{
+                printHelp();
+            }
+        }
     }
 
-    
 }
 
 
@@ -63,5 +90,8 @@ void printHelp(){
                  "      ...\n" <<
                  "    </Available>" <<
                  "  </rootNode>\n";
+
+    exit(0);
 }
+
 
