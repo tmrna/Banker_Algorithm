@@ -6,3 +6,5 @@ add_subdirectory(lib)
 add_executable(Banker main.cpp)
 
 target_link_libraries(Banker allocator read_write row_matrix)
+
+enable_testing()

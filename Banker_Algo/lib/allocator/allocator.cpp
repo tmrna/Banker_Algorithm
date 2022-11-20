@@ -52,12 +52,18 @@ void allocator::genSafeSequence(){
     allocated.setUsable();
     max.setUsable();
     need.setUsable();
+    int failCt = 0;
     for(unsigned i = 0; !done(); i = (i+1)%(max.size())){
 
         if(canUse(i)){
             useProcess(i);
         }
         if(!canUse(i)){
+            failCt++;
+            if(failCt == max.size()){
+                std::cout << "No safe sequence exists" << std::endl;
+                exit(0);
+            }
         }
     }
 }

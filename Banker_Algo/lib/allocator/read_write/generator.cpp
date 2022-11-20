@@ -160,6 +160,9 @@ void generator::setupFromGen(std::vector<std::vector<int>>& cts, std::ifstream& 
 
     do{
         if(!file.eof()) getline(file, line);
+
+        std::string tmp;
+        
         std::remove_if(line.begin(), line.end(), isspace);
 
         std::string num;
@@ -167,9 +170,8 @@ void generator::setupFromGen(std::vector<std::vector<int>>& cts, std::ifstream& 
         std::vector<int> app;
 
         for(int i = 0; i < line.length() && line != "@"; i++){
-            if(line[i] != ','){
+            if(line[i] != ',' && i != line.length() - 1){
                 num += line[i];
-                std::cout << "Currnet num  is " << num << std::endl << std::endl;
             }
             else{
                 std::cout << num << std::endl;
@@ -186,7 +188,12 @@ void generator::setupFromGen(std::vector<std::vector<int>>& cts, std::ifstream& 
     // making sure cts if full
 
     for(unsigned i = 0; i < cts.size(); i++){
+        std::cout << "on row " << i << std::endl;
         if(cts[i].size() < rowLen){
+            for(unsigned j = 0; j < cts[i].size(); i++){
+                std::cout << cts[i][j] << ", ";
+            }
+            std::cout << std::endl;
             while(cts[i].size() < rowLen) cts[i].push_back(0);
         }
     }
