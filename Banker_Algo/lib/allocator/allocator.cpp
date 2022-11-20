@@ -60,7 +60,7 @@ void allocator::genSafeSequence(){
         }
         if(!canUse(i)){
             failCt++;
-            if(failCt == max.size()){
+            if(failCt == 10 * max.size()){
                 std::cout << "No safe sequence exists" << std::endl;
                 exit(0);
             }

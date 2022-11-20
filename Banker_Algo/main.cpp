@@ -41,7 +41,7 @@ int main(int argc, char** argv){
             std::cout << "Done" << std::endl;
             solver.printSafeSequence();
         }
-        if(args[1] == "--help"){
+    if(args[1] != "--solve" && args[1] != "--generate-example"){
             printHelp();
         }
         if(args[1] == "--solve"){
@@ -105,7 +105,7 @@ void printHelp(){
                  "    <Available>\n" <<
                  "      <[resource type]> [resource count] </resource type>\n" <<
                  "      ...\n" <<
-                 "    </Available>" <<
+                 "    </Available>\n" <<
                  "  </rootNode>\n";
 
     exit(0);

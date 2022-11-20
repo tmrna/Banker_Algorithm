@@ -8,7 +8,6 @@ os.chdir(bnkr_alg)
 
 if(not os.path.exists("build")):
     os.system("mkdir build")
-
 os.chdir(build_path)
 
 os.system("cmake ..")
